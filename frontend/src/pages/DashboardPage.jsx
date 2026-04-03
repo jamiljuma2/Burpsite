@@ -103,7 +103,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Links */}
-        <div className="bg-slate-800 rounded-lg p-6 mb-6">
+        <div className="bg-slate-950 rounded-lg p-6 mb-6">
           <h2 className="text-2xl font-bold mb-4">Quick Start</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <QuickLinkCard
@@ -140,7 +140,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Features */}
-        <div className="bg-slate-800 rounded-lg p-6">
+        <div className="bg-slate-950 rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <BarChart3 className="text-red-400" />
             Features
@@ -176,8 +176,8 @@ function QuickLinkCard({ title, description, onClick, disabled = false }) {
   return (
     <div
       onClick={!disabled ? onClick : undefined}
-      className={`bg-slate-700 rounded-lg p-4 transition ${
-        !disabled ? 'cursor-pointer hover:bg-slate-600' : 'opacity-50'
+      className={`bg-slate-800 rounded-lg p-4 transition ${
+        !disabled ? 'cursor-pointer hover:bg-slate-700' : 'opacity-50'
       }`}
     >
       <h3 className="font-bold text-white mb-1">{title}</h3>
