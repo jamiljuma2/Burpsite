@@ -57,7 +57,7 @@ REACT_APP_API_URL=https://burpsite.onrender.com/api
 
 ### Optional: Custom Domain Variable
 ```
-REACT_APP_DOMAIN=burpsite-frontend.vercel.app
+REACT_APP_DOMAIN=burpsite-t3o3.vercel.app
 ```
 
 **IMPORTANT:** Environment variables must start with `REACT_APP_` to be accessible in React frontend.
@@ -72,7 +72,7 @@ REACT_APP_DOMAIN=burpsite-frontend.vercel.app
    - Install dependencies: `npm install`
    - Build project: `npm run build`
    - Deploy to CDN
-   - Assign domain: `burpsite-frontend.vercel.app`
+   - Assign domain: `https://burpsite-t3o3.vercel.app` (or update custom domain)
 
 3. Deployment typically completes in **30-60 seconds**
 
@@ -87,20 +87,20 @@ Once deployment completes:
 2. Click on **burpsite-frontend** project
 3. You'll see:
    - ✅ Green checkmark = Deployment successful
-   - Preview URL: `https://burpsite-frontend.vercel.app`
+   - Preview URL: `https://burpsite-t3o3.vercel.app`
    - Production URL: Your custom domain (if configured)
 
 ### Test Frontend
 ```bash
 # Test health page
-curl https://burpsite-frontend.vercel.app
+curl https://burpsite-t3o3.vercel.app
 
 # Should load React app
 # Check browser console for any API errors
 ```
 
 ### Test API Connection
-1. Open https://burpsite-frontend.vercel.app in browser
+1. Open https://burpsite-t3o3.vercel.app in browser
 2. Login or navigate to a page that calls the backend API
 3. Check browser DevTools → Network tab:
    - Requests to `https://burpsite.onrender.com/api/*` should succeed
@@ -179,7 +179,7 @@ REACT_APP_API_URL=https://burpsite.onrender.com/api
 1. Verify `REACT_APP_API_URL` is correct in Vercel dashboard
 2. Check backend API is running: `curl https://burpsite.onrender.com/health`
 3. Verify backend CORS allows frontend origin:
-   - Backend should allow: `https://burpsite-frontend.vercel.app`
+   - Backend should allow: `https://burpsite-t3o3.vercel.app`
    - Or custom domain if configured
 
 ### "Environment variables not loading"
@@ -205,7 +205,7 @@ REACT_APP_API_URL=https://burpsite.onrender.com/api
 | Variable | Value | Required |
 |----------|-------|----------|
 | `REACT_APP_API_URL` | `https://burpsite.onrender.com/api` | ✅ Yes |
-| `REACT_APP_DOMAIN` | `burpsite-frontend.vercel.app` | ❌ No |
+| `REACT_APP_DOMAIN` | `burpsite-t3o3.vercel.app` | ❌ No |
 | `REACT_APP_ENV` | `production` | ❌ No |
 
 ### Backend API Reference
@@ -253,16 +253,7 @@ npm run build
 ## Deployment Architecture
 
 ```
-GitHub (jamiljuma2/Burpsite)
-    ↓
-    Push to main
-    ↓
-Vercel (Auto-deploy)
-    ├─ Build: npm run build
-    ├─ Output: /build folder
-    └─ Deploy to CDN
-    ↓
-Frontend: https://burpsite-frontend.vercel.app
+Frontend: https://burpsite-t3o3.vercel.app
     ↓
     API calls to backend
     ↓
@@ -296,7 +287,7 @@ Database: Neon PostgreSQL
 - [ ] Environment variable set: `REACT_APP_API_URL=https://burpsite.onrender.com/api`
 - [ ] Deployment triggered
 - [ ] Green ✅ status in Vercel dashboard
-- [ ] Frontend loads at `https://burpsite-frontend.vercel.app`
+- [ ] Frontend loads at `https://burpsite-t3o3.vercel.app`
 - [ ] API calls succeed (check Network tab)
 - [ ] No console errors
 - [ ] Mobile responsive (test on mobile)

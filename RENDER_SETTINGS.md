@@ -29,7 +29,7 @@ NODE_ENV=production
 PORT=5000
 JWT_SECRET=[GENERATE_NEW]
 DATABASE_URL=postgresql://[neon_user]:[neon_password]@[neon_host]/neondb?sslmode=verify-full&channel_binding=require
-FRONTEND_URL=https://burpsite-frontend.onrender.com
+FRONTEND_URL=https://burpsite-t3o3.vercel.app
 PROXY_PORT=8888
 ```
 

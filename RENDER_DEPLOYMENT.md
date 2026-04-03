@@ -64,7 +64,7 @@ PORT=5000
 NODE_ENV=production
 JWT_SECRET=[GENERATE NEW - see below]
 DATABASE_URL=postgresql://[neon_user]:[neon_password]@[neon_host]/neondb?sslmode=verify-full&channel_binding=require
-FRONTEND_URL=https://[your-frontend-domain].onrender.com
+FRONTEND_URL=https://burpsite-t3o3.vercel.app
 ```
 
 ### Generate Secure JWT Secret
@@ -83,7 +83,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 | `PORT` | `5000` | Default Render port |
 | `JWT_SECRET` | `[SECURE_HEX_STRING]` | Generate new, never commit |
 | `DATABASE_URL` | `postgresql://[user]:[password]@[host]/neondb?sslmode=verify-full&channel_binding=require` | Use your Neon connection string |
-| `FRONTEND_URL` | `https://burpsite-frontend.onrender.com` | Update with actual frontend domain |
+| `FRONTEND_URL` | `https://burpsite-t3o3.vercel.app` | Frontend deployed on Vercel |
 | `PROXY_PORT` | `8888` | For proxy module |
 
 ---
