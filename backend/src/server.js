@@ -18,10 +18,18 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 
-const allowedOrigins = (process.env.FRONTEND_URLS || process.env.FRONTEND_URL || 'http://localhost:3000')
+const defaultOrigins = [
+  'http://localhost:3000',
+  'https://burpsite.vercel.app',
+  'https://burpsite-t3o3.vercel.app',
+];
+
+const envOrigins = `${process.env.FRONTEND_URLS || ''},${process.env.FRONTEND_URL || ''}`
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
+
+const allowedOrigins = [...new Set([...defaultOrigins, ...envOrigins])];
 
 // Security middleware
 app.use(helmet({
