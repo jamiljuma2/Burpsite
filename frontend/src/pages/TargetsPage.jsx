@@ -61,7 +61,7 @@ export default function TargetsPage() {
         {endpointList.map((endpoint, idx) => (
           <div
             key={idx}
-            className="bg-slate-700 p-2 rounded text-sm font-mono text-slate-300 break-all hover:bg-slate-600"
+            className="bg-slate-800 p-2 rounded text-sm font-mono text-slate-300 break-all hover:bg-slate-700"
           >
             {endpoint}
           </div>
@@ -81,7 +81,7 @@ export default function TargetsPage() {
 
       <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left panel */}
-        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
+        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
           <div className="p-4 border-b border-slate-700">
             <h2 className="font-bold text-lg mb-4">Start Crawl</h2>
             <form onSubmit={handleStartCrawl} className="space-y-3">
@@ -110,8 +110,8 @@ export default function TargetsPage() {
                 <div
                   key={target.id}
                   onClick={() => setSelectedTarget(target)}
-                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition ${
-                    selectedTarget?.id === target.id ? 'bg-slate-600' : ''
+                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-800 transition ${
+                    selectedTarget?.id === target.id ? 'bg-slate-700' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -140,7 +140,7 @@ export default function TargetsPage() {
         </div>
 
         {/* Right panel */}
-        <div className="w-full flex-1 bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-0">
+        <div className="w-full flex-1 bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-0">
           {selectedTarget ? (
             <>
               <div className="p-4 border-b border-slate-700">

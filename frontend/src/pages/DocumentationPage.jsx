@@ -32,7 +32,7 @@ export default function DocumentationPage() {
   return (
     <div className="min-h-screen bg-slate-900 p-4 sm:p-6">
       <div className="max-w-6xl mx-auto space-y-6">
-        <section className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+        <section className="bg-slate-950 border border-slate-700 rounded-lg p-6">
           <div className="flex items-center gap-3 mb-3">
             <BookOpen className="text-red-400" size={30} />
             <h1 className="text-2xl sm:text-3xl font-bold text-white">WebSecSuite Documentation</h1>
@@ -45,14 +45,14 @@ export default function DocumentationPage() {
 
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {GUIDES.map((guide) => (
-            <article key={guide.title} className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <article key={guide.title} className="bg-slate-950 border border-slate-700 rounded-lg p-5">
               <h2 className="text-lg font-bold text-slate-100 mb-2">{guide.title}</h2>
               <p className="text-sm text-slate-400">{guide.description}</p>
             </article>
           ))}
         </section>
 
-        <section className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+        <section className="bg-slate-950 border border-slate-700 rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
             <ListChecks className="text-red-400" size={20} />
             Recommended Testing Flow
@@ -77,7 +77,7 @@ export default function DocumentationPage() {
           </p>
         </section>
 
-        <section className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+        <section className="bg-slate-950 border border-slate-700 rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
             <FileText className="text-red-400" size={20} />
             Need More Detail?

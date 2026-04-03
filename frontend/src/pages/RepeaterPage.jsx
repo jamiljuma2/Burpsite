@@ -92,7 +92,7 @@ export default function RepeaterPage() {
 
       <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left panel */}
-        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
+        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
           <div className="p-4 border-b border-slate-700">
             <h2 className="font-bold text-lg">Saved Requests</h2>
           </div>
@@ -105,8 +105,8 @@ export default function RepeaterPage() {
                 <div
                   key={request.id}
                   onClick={() => setSelectedRequest(request)}
-                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition ${
-                    selectedRequest?.id === request.id ? 'bg-slate-600' : ''
+                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-800 transition ${
+                    selectedRequest?.id === request.id ? 'bg-slate-700' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -136,7 +136,7 @@ export default function RepeaterPage() {
           {activeTab === 'List' ? (
             <RequestDetailsPanel request={selectedRequest} />
           ) : (
-            <div className="bg-slate-800 rounded-lg p-6 overflow-auto">
+            <div className="bg-slate-950 rounded-lg p-6 overflow-auto">
               <h2 className="text-lg font-bold mb-4">Create New Request</h2>
               <form onSubmit={handleCreateRequest} className="space-y-4">
                 <div>

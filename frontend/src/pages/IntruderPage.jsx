@@ -69,7 +69,7 @@ export default function IntruderPage() {
 
       {error && <Alert type="error" message={error} onClose={() => setError('')} />}
 
-      <div className="bg-slate-800 rounded-lg p-6">
+      <div className="bg-slate-950 rounded-lg p-6">
         <h2 className="text-lg font-bold mb-4">Configure Attack</h2>
         <form onSubmit={handleStartAttack} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -133,7 +133,7 @@ export default function IntruderPage() {
       </div>
 
       {results.length > 0 && (
-        <div className="flex-1 bg-slate-800 rounded-lg overflow-hidden flex flex-col">
+        <div className="flex-1 bg-slate-950 rounded-lg overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-700">
             <h2 className="font-bold text-lg">Results ({results.length})</h2>
           </div>

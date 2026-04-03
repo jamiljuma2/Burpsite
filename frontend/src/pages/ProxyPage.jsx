@@ -56,7 +56,7 @@ export default function ProxyPage() {
 
       <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left panel - Request list */}
-        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
+        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
           <div className="p-4 border-b border-slate-700">
             <h2 className="font-bold text-lg">Requests ({requests.length})</h2>
           </div>
@@ -71,8 +71,8 @@ export default function ProxyPage() {
                 <div
                   key={request.id}
                   onClick={() => setSelectedRequest(request)}
-                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition ${
-                    selectedRequest?.id === request.id ? 'bg-slate-600' : ''
+                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-800 transition ${
+                    selectedRequest?.id === request.id ? 'bg-slate-700' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between">

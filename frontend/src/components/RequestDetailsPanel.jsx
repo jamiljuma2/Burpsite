@@ -8,7 +8,7 @@ export default function RequestDetailsPanel({ request }) {
 
   if (!request) {
     return (
-      <div className="bg-slate-800 rounded-lg p-6 text-center text-slate-400">
+      <div className="bg-slate-950 rounded-lg p-6 text-center text-slate-400">
         Select a request to view details
       </div>
     );
@@ -20,7 +20,7 @@ export default function RequestDetailsPanel({ request }) {
   const responseHeaders = typeof request.response_headers === 'string' ? JSON.parse(request.response_headers) : request.response_headers;
 
   return (
-    <div className="bg-slate-800 rounded-lg overflow-hidden flex flex-col h-full">
+    <div className="bg-slate-950 rounded-lg overflow-hidden flex flex-col h-full">
       <div className="p-4 border-b border-slate-700">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm">
           <div>

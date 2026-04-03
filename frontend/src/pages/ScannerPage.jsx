@@ -93,7 +93,7 @@ export default function ScannerPage() {
 
       <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left panel */}
-        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
+        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
           <div className="p-4 border-b border-slate-700">
             <h2 className="font-bold text-lg mb-4">Start Scan</h2>
             <form onSubmit={handleStartScan} className="space-y-3">
@@ -122,8 +122,8 @@ export default function ScannerPage() {
                 <div
                   key={scan.id}
                   onClick={() => setSelectedScan(scan)}
-                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition ${
-                    selectedScan?.id === scan.id ? 'bg-slate-600' : ''
+                  className={`p-3 border-b border-slate-700 cursor-pointer hover:bg-slate-800 transition ${
+                    selectedScan?.id === scan.id ? 'bg-slate-700' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -163,7 +163,7 @@ export default function ScannerPage() {
         </div>
 
         {/* Right panel */}
-        <div className="w-full flex-1 bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-0">
+        <div className="w-full flex-1 bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-0">
           {selectedScan ? (
             <>
               <div className="p-4 border-b border-slate-700">
