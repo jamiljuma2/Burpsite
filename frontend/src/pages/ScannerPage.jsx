@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import apiClient from '../utils/api';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Zap, Trash2, RefreshCw } from 'lucide-react';
+import '../styles/scannerPage.css';
 
 const SEVERITY_COLORS = {
   high: 'bg-red-900 text-red-200',
@@ -76,8 +77,12 @@ export default function ScannerPage() {
   };
 
   return (
-    <div className="h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
-      <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+    <div
+      className="scanner-page-container min-h-screen"
+      style={{ '--scanner-bg-image': `url(${process.env.PUBLIC_URL}/burp6.jpeg)` }}
+    >
+      <div className="scanner-page-content h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
+        <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
         <Zap className="text-red-400" size={32} />
         Scanner
         <button
@@ -89,9 +94,9 @@ export default function ScannerPage() {
         </button>
       </h1>
 
-      {error && <Alert type="error" message={error} onClose={() => setError('')} />}
+        {error && <Alert type="error" message={error} onClose={() => setError('')} />}
 
-      <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
+        <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left panel */}
         <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-950 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
           <div className="p-4 border-b border-slate-700">
@@ -201,6 +206,7 @@ export default function ScannerPage() {
           ) : (
             <div className="p-4 text-slate-400">Select a scan to view results</div>
           )}
+        </div>
         </div>
       </div>
     </div>
