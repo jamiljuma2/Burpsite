@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../utils/api';
+import { defaultCache } from '../utils/requestCache';
 import useAuthStore from '../context/authStore';
 import { BarChart3, Shield } from 'lucide-react';
 
@@ -23,21 +24,22 @@ export default function DashboardPage() {
   const fetchStats = async () => {
     setLoading(true);
     try {
+      // Use cached requests to avoid hitting rate limits
       const [scans, requests, targets] = await Promise.all([
-        apiClient.get('/scans'),
-        apiClient.get('/requests'),
-        apiClient.get('/targets'),
+        defaultCache.get('/scans', () => apiClient.get('/scans').then(r => r.data)),
+        defaultCache.get('/requests', () => apiClient.get('/requests').then(r => r.data)),
+        defaultCache.get('/targets', () => apiClient.get('/targets').then(r => r.data)),
       ]);
 
-      const totalVulnerabilities = scans.data.reduce(
+      const totalVulnerabilities = scans.reduce(
         (sum, scan) => sum + (scan.vulnerabilities?.length || 0),
         0
       );
 
       setStats({
-        totalScans: scans.data.length,
-        totalRequests: requests.data.length,
-        totalTargets: targets.data.length,
+        totalScans: scans.length,
+        totalRequests: requests.length,
+        totalTargets: targets.length,
         recentVulnerabilities: totalVulnerabilities,
       });
     } catch (error) {

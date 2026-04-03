@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../utils/api';
+import { defaultCache } from '../utils/requestCache';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Globe, Trash2 } from 'lucide-react';
 
@@ -14,13 +15,23 @@ export default function TargetsPage() {
     fetchTargets();
   }, []);
 
-  const fetchTargets = async () => {
+  const fetchTargets = async (skipCache = false) => {
     setLoading(true);
     try {
-      const response = await apiClient.get('/targets');
-      setTargets(response.data);
+      let data;
+      if (skipCache) {
+        defaultCache.invalidate('/targets');
+        const response = await apiClient.get('/targets');
+        data = response.data;
+      } else {
+        data = await defaultCache.get('/targets', () =>
+          apiClient.get('/targets').then(r => r.data)
+        );
+      }
+      setTargets(data);
     } catch (err) {
       setError('Failed to fetch targets');
+      console.error('Error fetching targets:', err);
     } finally {
       setLoading(false);
     }
@@ -37,6 +48,8 @@ export default function TargetsPage() {
       const response = await apiClient.post('/targets/crawl', { baseUrl });
       setTargets([response.data, ...targets]);
       setBaseUrl('');
+      // Invalidate cache after creating new target
+      defaultCache.invalidate('/targets');
     } catch (err) {
       setError('Failed to start crawl');
     }
@@ -47,6 +60,8 @@ export default function TargetsPage() {
       await apiClient.delete(`/targets/${id}`);
       setTargets(targets.filter((t) => t.id !== id));
       if (selectedTarget?.id === id) setSelectedTarget(null);
+      // Invalidate cache after deleting
+      defaultCache.invalidate('/targets');
     } catch (err) {
       setError('Failed to delete target');
     }

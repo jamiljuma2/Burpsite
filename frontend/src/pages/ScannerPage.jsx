@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import apiClient from '../utils/api';
+import { defaultCache } from '../utils/requestCache';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Zap, Trash2, RefreshCw } from 'lucide-react';
 import '../styles/scannerPage.css';
@@ -17,19 +18,31 @@ export default function ScannerPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchScans = useCallback(async (showLoader = false) => {
+  const fetchScans = useCallback(async (showLoader = false, skipCache = false) => {
     if (showLoader) {
       setLoading(true);
     }
     try {
-      const response = await apiClient.get('/scans');
-      setScans(response.data);
+      // Skip cache on manual refresh or initial load
+      let data;
+      if (skipCache) {
+        defaultCache.invalidate('/scans');
+        const response = await apiClient.get('/scans');
+        data = response.data;
+      } else {
+        data = await defaultCache.get('/scans', () => 
+          apiClient.get('/scans').then(r => r.data)
+        );
+      }
+
+      setScans(data);
       setSelectedScan((previous) => {
         if (!previous) return null;
-        return response.data.find((scan) => scan.id === previous.id) || null;
+        return data.find((scan) => scan.id === previous.id) || null;
       });
     } catch (err) {
       setError('Failed to fetch scans');
+      console.error('Error fetching scans:', err);
     } finally {
       if (showLoader) {
         setLoading(false);
@@ -40,9 +53,10 @@ export default function ScannerPage() {
   useEffect(() => {
     fetchScans(true);
 
+    // Increased polling interval from 3s to 10s to reduce rate limiting
     const poller = setInterval(() => {
       fetchScans(false);
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(poller);
   }, [fetchScans]);
@@ -59,8 +73,10 @@ export default function ScannerPage() {
       setScans((prevScans) => [response.data, ...prevScans]);
       setSelectedScan(response.data);
       setTargetUrl('');
+      // Invalidate cache after creating new scan
+      defaultCache.invalidate('/scans');
       // Trigger an early refresh so status moves off "pending" quickly.
-      setTimeout(() => fetchScans(false), 1000);
+      setTimeout(() => fetchScans(false, true), 1000);
     } catch (err) {
       setError('Failed to start scan');
     }
@@ -71,6 +87,8 @@ export default function ScannerPage() {
       await apiClient.delete(`/scans/${id}`);
       setScans(scans.filter((s) => s.id !== id));
       if (selectedScan?.id === id) setSelectedScan(null);
+      // Invalidate cache after deleting scan
+      defaultCache.invalidate('/scans');
     } catch (err) {
       setError('Failed to delete scan');
     }
@@ -86,7 +104,7 @@ export default function ScannerPage() {
         <Zap className="text-red-400" size={32} />
         Scanner
         <button
-          onClick={() => fetchScans(true)}
+          onClick={() => fetchScans(true, true)}
           className="ml-2 p-2 rounded bg-slate-700 hover:bg-slate-600 text-slate-200"
           title="Refresh scans"
         >

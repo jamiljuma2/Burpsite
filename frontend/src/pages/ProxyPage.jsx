@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import apiClient from '../utils/api';
+import { defaultCache } from '../utils/requestCache';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Activity, Trash2, RefreshCw } from 'lucide-react';
 import useRequestStore from '../context/requestStore';
@@ -10,13 +11,23 @@ export default function ProxyPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchRequests = useCallback(async () => {
+  const fetchRequests = useCallback(async (skipCache = false) => {
     setLoading(true);
     try {
-      const response = await apiClient.get('/requests');
-      setRequests(response.data);
+      let data;
+      if (skipCache) {
+        defaultCache.invalidate('/requests');
+        const response = await apiClient.get('/requests');
+        data = response.data;
+      } else {
+        data = await defaultCache.get('/requests', () =>
+          apiClient.get('/requests').then(r => r.data)
+        );
+      }
+      setRequests(data);
     } catch (err) {
       setError('Failed to fetch requests');
+      console.error('Error fetching requests:', err);
     } finally {
       setLoading(false);
     }
@@ -30,6 +41,8 @@ export default function ProxyPage() {
     try {
       await apiClient.delete(`/requests/${id}`);
       removeRequest(id);
+      // Invalidate cache after deleting
+      defaultCache.invalidate('/requests');
     } catch (err) {
       setError('Failed to delete request');
     }
@@ -43,7 +56,7 @@ export default function ProxyPage() {
           Proxy Interceptor
         </h1>
         <button
-          onClick={fetchRequests}
+          onClick={() => fetchRequests(true)}
           disabled={loading}
           className="w-full sm:w-auto bg-red-600 hover:bg-red-700 px-4 py-2 rounded flex items-center justify-center gap-2"
         >

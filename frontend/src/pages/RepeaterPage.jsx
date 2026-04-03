@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../utils/api';
+import { defaultCache } from '../utils/requestCache';
 import { Alert, LoadingSpinner, Tabs } from '../components/Common';
 import { Activity } from 'lucide-react';
 import RequestDetailsPanel from '../components/RequestDetailsPanel';
@@ -22,13 +23,23 @@ export default function RepeaterPage() {
     fetchRequests();
   }, []);
 
-  const fetchRequests = async () => {
+  const fetchRequests = async (skipCache = false) => {
     setLoading(true);
     try {
-      const response = await apiClient.get('/requests');
-      setRequests(response.data);
+      let data;
+      if (skipCache) {
+        defaultCache.invalidate('/requests');
+        const response = await apiClient.get('/requests');
+        data = response.data;
+      } else {
+        data = await defaultCache.get('/requests', () =>
+          apiClient.get('/requests').then(r => r.data)
+        );
+      }
+      setRequests(data);
     } catch (err) {
       setError('Failed to fetch requests');
+      console.error('Error fetching requests:', err);
     } finally {
       setLoading(false);
     }
@@ -60,6 +71,8 @@ export default function RepeaterPage() {
         cookies: '{}',
       });
       setActiveTab('List');
+      // Invalidate cache after creating request
+      defaultCache.invalidate('/requests');
     } catch (err) {
       setError('Failed to create request');
     }
@@ -69,7 +82,8 @@ export default function RepeaterPage() {
     setLoading(true);
     try {
       await apiClient.post(`/requests/${id}/repeat`);
-      fetchRequests();
+      // Skip cache to get fresh data after repeating
+      await fetchRequests(true);
       const updated = requests.find((r) => r.id === id);
       setSelectedRequest(updated);
     } catch (err) {
