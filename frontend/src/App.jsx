@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import useAuthStore from './context/authStore';
 import Header from './components/Header';
@@ -27,6 +27,7 @@ function PublicRoute({ children }) {
 
 export default function App() {
   const { isAuthenticated, user, setUser } = useAuthStore();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated && (!user || !user.role)) {
@@ -55,21 +56,23 @@ export default function App() {
 
   return (
     <Router>
-      <Header />
-      <div className="flex h-screen bg-slate-900">
-        <Sidebar />
-        <main className="flex-1 overflow-auto">
-          <Routes>
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/proxy" element={<ProxyPage />} />
-            <Route path="/repeater" element={<RepeaterPage />} />
-            <Route path="/scanner" element={<ScannerPage />} />
-            <Route path="/intruder" element={<IntruderPage />} />
-            <Route path="/targets" element={<TargetsPage />} />
-            <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
-            <Route path="*" element={<Navigate to="/dashboard" />} />
-          </Routes>
-        </main>
+      <div className="min-h-screen bg-slate-900 flex flex-col">
+        <Header onMenuToggle={() => setIsSidebarOpen((prev) => !prev)} />
+        <div className="flex flex-1 min-h-0">
+          <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+          <main className="flex-1 min-w-0 overflow-auto">
+            <Routes>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/proxy" element={<ProxyPage />} />
+              <Route path="/repeater" element={<RepeaterPage />} />
+              <Route path="/scanner" element={<ScannerPage />} />
+              <Route path="/intruder" element={<IntruderPage />} />
+              <Route path="/targets" element={<TargetsPage />} />
+              <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
+              <Route path="*" element={<Navigate to="/dashboard" />} />
+            </Routes>
+          </main>
+        </div>
       </div>
     </Router>
   );

@@ -22,18 +22,18 @@ export default function RequestDetailsPanel({ request }) {
   return (
     <div className="bg-slate-800 rounded-lg overflow-hidden flex flex-col h-full">
       <div className="p-4 border-b border-slate-700">
-        <div className="grid grid-cols-3 gap-4 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm">
           <div>
             <span className="text-slate-400">Method:</span>
             <span className="ml-2 font-bold text-red-400">{request.method}</span>
           </div>
-          <div className="col-span-2">
+          <div className="sm:col-span-2">
             <span className="text-slate-400">URL:</span>
             <span className="ml-2 font-mono text-sm break-all">{request.url}</span>
           </div>
         </div>
         {request.response_status && (
-          <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm">
             <div>
               <span className="text-slate-400">Status:</span>
               <span className="ml-2 font-bold text-green-400">{request.response_status}</span>
@@ -48,9 +48,9 @@ export default function RequestDetailsPanel({ request }) {
 
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="flex-1 overflow-auto p-4">
+      <div className="flex-1 overflow-auto p-4 min-w-0">
         {activeTab === 'Headers' && (
-          <div>
+          <div className="overflow-x-auto">
             <h3 className="text-sm font-bold text-slate-400 mb-4">Request Headers</h3>
             <JSONPretty data={headers} />
           </div>
@@ -66,7 +66,7 @@ export default function RequestDetailsPanel({ request }) {
         )}
 
         {activeTab === 'Response' && (
-          <div>
+          <div className="overflow-x-auto">
             {request.response_body ? (
               <>
                 <h3 className="text-sm font-bold text-slate-400 mb-4">Response Headers</h3>
@@ -83,7 +83,7 @@ export default function RequestDetailsPanel({ request }) {
         )}
 
         {activeTab === 'Cookies' && (
-          <div>
+          <div className="overflow-x-auto">
             <h3 className="text-sm font-bold text-slate-400 mb-4">Cookies</h3>
             <JSONPretty data={cookies} />
           </div>

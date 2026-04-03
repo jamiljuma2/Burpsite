@@ -17,10 +17,10 @@ export function Alert({ type = 'info', message, onClose }) {
   };
 
   return (
-    <div className={`border rounded-lg p-4 ${colors[type]} flex justify-between items-center`}>
-      <span>{message}</span>
+    <div className={`border rounded-lg p-4 ${colors[type]} flex justify-between items-start gap-3`}>
+      <span className="break-words">{message}</span>
       {onClose && (
-        <button onClick={onClose} className="text-lg font-bold cursor-pointer">
+        <button onClick={onClose} className="text-lg font-bold cursor-pointer shrink-0 leading-none">
           ×
         </button>
       )}
@@ -31,12 +31,12 @@ export function Alert({ type = 'info', message, onClose }) {
 export function Tabs({ tabs, activeTab, setActiveTab }) {
   return (
     <div className="border-b border-slate-700">
-      <div className="flex gap-4">
+      <div className="flex gap-2 sm:gap-4 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 border-b-2 transition ${
+            className={`px-3 sm:px-4 py-2 border-b-2 transition whitespace-nowrap ${
               activeTab === tab
                 ? 'border-red-600 text-red-400'
                 : 'border-transparent text-slate-400 hover:text-slate-300'

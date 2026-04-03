@@ -36,16 +36,16 @@ export default function ProxyPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col gap-4 p-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold flex items-center gap-2">
+    <div className="h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+        <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
           <Activity className="text-red-400" size={32} />
           Proxy Interceptor
         </h1>
         <button
           onClick={fetchRequests}
           disabled={loading}
-          className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded flex items-center gap-2"
+          className="w-full sm:w-auto bg-red-600 hover:bg-red-700 px-4 py-2 rounded flex items-center justify-center gap-2"
         >
           <RefreshCw size={18} />
           Refresh
@@ -54,9 +54,9 @@ export default function ProxyPage() {
 
       {error && <Alert type="error" message={error} onClose={() => setError('')} />}
 
-      <div className="flex gap-4 flex-1 overflow-hidden">
+      <div className="flex flex-col lg:flex-row gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left panel - Request list */}
-        <div className="w-1/3 bg-slate-800 rounded-lg overflow-hidden flex flex-col">
+        <div className="w-full lg:w-1/3 lg:max-w-md bg-slate-800 rounded-lg overflow-hidden flex flex-col min-h-56 lg:min-h-0">
           <div className="p-4 border-b border-slate-700">
             <h2 className="font-bold text-lg">Requests ({requests.length})</h2>
           </div>
@@ -100,7 +100,7 @@ export default function ProxyPage() {
         </div>
 
         {/* Right panel - Request details */}
-        <div className="flex-1 overflow-hidden">
+        <div className="w-full flex-1 overflow-hidden min-h-0">
           <RequestDetailsPanel request={selectedRequest} />
         </div>
       </div>

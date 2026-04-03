@@ -61,8 +61,8 @@ export default function IntruderPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col gap-4 p-4">
-      <h1 className="text-2xl font-bold flex items-center gap-2">
+    <div className="h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
+      <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
         <Target className="text-red-400" size={32} />
         Intruder (Attack Tool)
       </h1>
@@ -71,7 +71,7 @@ export default function IntruderPage() {
 
       <div className="bg-slate-800 rounded-lg p-6">
         <h2 className="text-lg font-bold mb-4">Configure Attack</h2>
-        <form onSubmit={handleStartAttack} className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleStartAttack} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-bold text-slate-300 mb-2">Target URL</label>
             <input
@@ -125,7 +125,7 @@ export default function IntruderPage() {
           <button
             type="submit"
             disabled={loading}
-            className="col-span-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition"
+            className="md:col-span-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition"
           >
             {loading ? <LoadingSpinner /> : 'Start Attack'}
           </button>
@@ -139,7 +139,8 @@ export default function IntruderPage() {
           </div>
 
           <div className="flex-1 overflow-auto">
-            <table className="w-full text-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[640px]">
               <thead className="bg-slate-900 sticky top-0">
                 <tr className="border-b border-slate-700">
                   <th className="px-4 py-2 text-left">Payload</th>
@@ -170,7 +171,8 @@ export default function IntruderPage() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
           </div>
         </div>
       )}
