@@ -62,7 +62,10 @@ export default function IntruderPage() {
   };
 
   return (
-    <div className="intruder-page-container min-h-screen">
+    <div
+      className="intruder-page-container min-h-screen"
+      style={{ '--intruder-bg-image': `url(${process.env.PUBLIC_URL}/burp1.jpeg)` }}
+    >
       <div className="intruder-page-content h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
         <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
         <Target className="text-red-400" size={32} />
