@@ -152,7 +152,7 @@ Once deployed, you'll see:
 
 ```bash
 # Backend running on Render
-curl https://burpsite-api.onrender.com/health
+curl https://burpsite.onrender.com/health
 
 # Should return:
 # {"status":"ok","message":"Burpsite API is running"}
@@ -166,7 +166,7 @@ Update frontend environment variables to point to Render backend:
 
 **Frontend `.env`:**
 ```
-REACT_APP_API_URL=https://burpsite-api.onrender.com/api
+REACT_APP_API_URL=https://burpsite.onrender.com/api
 ```
 
 **Redeploy frontend** with updated API URL.
@@ -204,6 +204,9 @@ DATABASE_URL=postgresql://neondb_owner:password@ep-host.region.neon.tech/neondb?
 
 # Frontend Integration
 FRONTEND_URL=https://burpsite-frontend.onrender.com
+
+# Backend API
+BACKEND_URL=https://burpsite.onrender.com
 
 # Features
 PROXY_PORT=8888
@@ -257,7 +260,7 @@ PROXY_PORT=8888
 **Solutions:**
 1. Wait 60+ seconds after deployment
 2. Check if `/health` endpoint is responding
-3. Verify API is running: `curl https://yourdomain/health`
+3. Verify API is running: `curl https://burpsite.onrender.com/health`
 
 ### "Database connection timeout"
 **Verify:**
@@ -377,7 +380,7 @@ If you prefer using Render's PostgreSQL instead of Neon:
 - [ ] Instance type selected (Free or Starter)
 - [ ] Deployment triggered
 - [ ] Logs show "✓ Burpsite API running on port 5000"
-- [ ] Health check passes: `curl https://your-domain/health`
+- [ ] Health check passes: `curl https://burpsite.onrender.com/health`
 - [ ] Frontend updated with REACT_APP_API_URL
 - [ ] Auto-deploy from GitHub enabled
 
@@ -400,6 +403,7 @@ PORT=5000
 JWT_SECRET=GENERATE_NEW_VALUE_WITH_NODE_COMMAND
 DATABASE_URL=postgresql://neondb_owner:YOUR_PASSWORD@your-host.neon.tech/neondb?sslmode=verify-full&channel_binding=require
 FRONTEND_URL=https://your-frontend-domain.com
+BACKEND_URL=https://burpsite.onrender.com
 PROXY_PORT=8888
 ```
 
