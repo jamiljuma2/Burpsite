@@ -1,9 +1,9 @@
 services:
   - type: web
     name: burpsite-api
-    env: node
+    runtime: node
     region: virginia  # Change to closest region
-    plan: starter  # free | starter | starter-plus | standard
+    plan: starter  # free | starter | standard
     
     # Source code
     repo: https://github.com/jamiljuma2/Burpsite.git
@@ -13,36 +13,20 @@ services:
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
     
-    # Environment Variables
+    # Environment Variables (set in dashboard - do not hardcode secrets)
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 5000
       - key: JWT_SECRET
-        fromDatabase: true  # Must be set in dashboard
+        value: ${JWT_SECRET}  # Set in dashboard as secret
       - key: DATABASE_URL
-        fromDatabase: true  # Must be set in dashboard
+        value: ${DATABASE_URL}  # Set in dashboard as secret
       - key: FRONTEND_URL
-        fromDatabase: true  # Must be set in dashboard
+        value: ${FRONTEND_URL}  # Set in dashboard
       - key: PROXY_PORT
         value: 8888
     
-    # Health Check
-    healthCheckPath: /health
-    healthCheckTimeout: 30
-    healthCheckInitialDelay: 60
-    healthCheckInterval: 60
-    
-    # Limits (Starter plan)
-    maxInstanceCount: 1
-    minInstanceCount: 1
-    cpuAllocationPercent: 100
-    
-    # Auto-deploy
+    # Auto-deploy on push to main
     autoDeploy: true
-    
-    # Persistent disk (optional, for logs)
-    disk:
-      - path: /var/log
-        sizeMb: 1024
