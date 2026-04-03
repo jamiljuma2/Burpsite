@@ -6,10 +6,32 @@
   justify-content: center;
   padding: 1rem;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1a1f35 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
+  --bg-image: none;
 }
 
-/* Background accent layers */
+/* Background image layer - base */
+.auth-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: brightness(0.95) contrast(1.1);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* Background accent layers with improved visibility */
 .auth-container::before {
   content: '';
   position: absolute;
@@ -18,36 +40,32 @@
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.92)),
-    radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.65)),
+    radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.25) 0%, transparent 50%);
   background-size: cover, cover, cover;
   background-position: center, center, center;
   background-attachment: fixed, fixed, fixed;
   pointer-events: none;
+  z-index: 2;
 }
-
-/* Optional: Add background image via inline style or via custom CSS class */
-/* To use the image, add this to a wrapper element's style:
-   style={{ backgroundImage: "url('/binary-bg.jpg')" }}
-*/
 
 .auth-form-wrapper {
   position: relative;
-  z-index: 10;
+  z-index: 20;
   width: 100%;
   max-width: 28rem;
 }
 
 .auth-form-card {
-  background: rgba(30, 41, 59, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(20, 28, 45, 0.97);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.3);
   border-radius: 0.5rem;
   padding: 2rem;
   box-shadow: 
-    0 20px 25px -5px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 20px 25px -5px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(148, 163, 184, 0.1);
 }
 
 @media (max-width: 640px) {

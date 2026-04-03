@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
     <div 
       className="auth-container" 
-      style={{ backgroundImage: "url('/binary-bg.jpg')" }}
+      style={{ '--bg-image': "url('/binary-bg.jpg')" }}
     >
       <div className="auth-form-wrapper">
         <div className="auth-form-card">
