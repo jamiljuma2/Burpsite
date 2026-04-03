@@ -37,7 +37,7 @@ export default function LoginPage() {
     >
       <div className="auth-form-wrapper">
         <div className="auth-form-card">
-          <h1 className="text-3xl font-bold text-red-400 mb-8 text-center">Burpsite</h1>
+          <h1 className="text-3xl font-bold text-red-400 mb-8 text-center">WebSecSuite</h1>
 
           {error && <Alert type="error" message={error} />}
 

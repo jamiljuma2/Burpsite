@@ -81,7 +81,7 @@ export default function DashboardPage() {
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-2 flex items-center gap-3">
             <Shield className="text-red-400" size={40} />
-            Welcome to Burpsite
+            Welcome to WebSecSuite
           </h1>
           <p className="text-slate-400">
             {user?.username}, get started with web security testing

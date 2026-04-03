@@ -26,7 +26,7 @@ export default function Header({ onMenuToggle }) {
 
         <Link to="/" className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-red-400 shrink-0">
           <Shield size={28} className="sm:w-8 sm:h-8" />
-          Burpsite
+          WebSecSuite
         </Link>
 
         <div className="ml-auto flex items-center gap-2 sm:gap-4 min-w-0">
