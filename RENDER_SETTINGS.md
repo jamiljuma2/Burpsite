@@ -28,7 +28,7 @@ cd backend && npm start
 NODE_ENV=production
 PORT=5000
 JWT_SECRET=[GENERATE_NEW]
-DATABASE_URL=postgresql://neondb_owner:npg_01vKMCwyFTAG@ep-billowing-lake-altjrf2d-pooler.c-3.eu-central-1.aws.neon.tech/neondb?sslmode=verify-full&channel_binding=require
+DATABASE_URL=postgresql://[neon_user]:[neon_password]@[neon_host]/neondb?sslmode=verify-full&channel_binding=require
 FRONTEND_URL=https://burpsite-frontend.onrender.com
 PROXY_PORT=8888
 ```

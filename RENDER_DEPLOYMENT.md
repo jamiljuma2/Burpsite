@@ -63,7 +63,7 @@ In the Render dashboard, add these environment variables under **Environment**:
 PORT=5000
 NODE_ENV=production
 JWT_SECRET=[GENERATE NEW - see below]
-DATABASE_URL=postgresql://neondb_owner:npg_01vKMCwyFTAG@ep-billowing-lake-altjrf2d-pooler.c-3.eu-central-1.aws.neon.tech/neondb?sslmode=verify-full&channel_binding=require
+DATABASE_URL=postgresql://[neon_user]:[neon_password]@[neon_host]/neondb?sslmode=verify-full&channel_binding=require
 FRONTEND_URL=https://[your-frontend-domain].onrender.com
 ```
 
@@ -82,7 +82,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 | `NODE_ENV` | `production` | Enable production error handling |
 | `PORT` | `5000` | Default Render port |
 | `JWT_SECRET` | `[SECURE_HEX_STRING]` | Generate new, never commit |
-| `DATABASE_URL` | `postgresql://...sslmode=verify-full` | Use existing Neon URL |
+| `DATABASE_URL` | `postgresql://[user]:[password]@[host]/neondb?sslmode=verify-full&channel_binding=require` | Use your Neon connection string |
 | `FRONTEND_URL` | `https://burpsite-frontend.onrender.com` | Update with actual frontend domain |
 | `PROXY_PORT` | `8888` | For proxy module |
 
