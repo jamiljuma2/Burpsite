@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../utils/api';
 import useAuthStore from '../context/authStore';
 import { Alert, LoadingSpinner } from '../components/Common';
+import '../styles/authPages.css';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -37,9 +38,12 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="bg-slate-800 rounded-lg p-8 shadow-xl">
+    <div 
+      className="auth-container" 
+      style={{ backgroundImage: "url('/binary-bg.jpg')" }}
+    >
+      <div className="auth-form-wrapper">
+        <div className="auth-form-card">
           <h1 className="text-3xl font-bold text-red-400 mb-8 text-center">Create Account</h1>
 
           {error && <Alert type="error" message={error} />}
