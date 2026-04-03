@@ -13,6 +13,7 @@ import ScannerPage from './pages/ScannerPage';
 import IntruderPage from './pages/IntruderPage';
 import TargetsPage from './pages/TargetsPage';
 import AdminPage from './pages/AdminPage';
+import DocumentationPage from './pages/DocumentationPage';
 import './index.css';
 
 function AdminRoute({ children }) {
@@ -68,6 +69,7 @@ export default function App() {
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/intruder" element={<IntruderPage />} />
               <Route path="/targets" element={<TargetsPage />} />
+              <Route path="/documentation" element={<DocumentationPage />} />
               <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>

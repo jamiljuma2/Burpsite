@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Activity, Radio, Zap, Target, Globe, Home, ShieldCheck, Crown } from 'lucide-react';
+import { Activity, Radio, Zap, Target, Globe, Home, ShieldCheck, Crown, BookOpen } from 'lucide-react';
 import useAuthStore from '../context/authStore';
 
 const NAV_ITEMS = [
@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: 'Scanner', path: '/scanner', icon: Zap },
   { label: 'Intruder', path: '/intruder', icon: Target },
   { label: 'Target Map', path: '/targets', icon: Globe },
+  { label: 'Documentation', path: '/documentation', icon: BookOpen },
 ];
 
 const ADMIN_NAV_ITEMS = [

@@ -134,7 +134,7 @@ export default function DashboardPage() {
             <QuickLinkCard
               title="Documentation"
               description="Learn about security testing"
-              disabled
+              onClick={() => navigate('/documentation')}
             />
           </div>
         </div>
