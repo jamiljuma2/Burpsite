@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import apiClient from '../utils/api';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Target } from 'lucide-react';
+import '../styles/intruderPage.css';
 
 export default function IntruderPage() {
   const [attackUrl, setAttackUrl] = useState('');
@@ -61,8 +62,9 @@ export default function IntruderPage() {
   };
 
   return (
-    <div className="h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
-      <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+    <div className="intruder-page-container min-h-screen">
+      <div className="intruder-page-content h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
+        <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
         <Target className="text-red-400" size={32} />
         Intruder (Attack Tool)
       </h1>
@@ -176,6 +178,7 @@ export default function IntruderPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
