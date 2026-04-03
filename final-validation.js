@@ -33,6 +33,13 @@ function makeRequest(path, method = 'GET', data = null) {
   });
 }
 
+const uniqueSuffix = Date.now();
+const validationUser = {
+  username: `finaltest_${uniqueSuffix}`,
+  email: `finaltest_${uniqueSuffix}@burpsite.local`,
+  password: `FinalTest!${uniqueSuffix}`,
+};
+
 async function validate() {
   const results = [];
 
@@ -61,10 +68,10 @@ async function validate() {
   // Test 3: Authentication
   console.log('Testing Authentication...');
   const registerData = JSON.stringify({
-    username: 'finaltest',
-    email: 'finaltest@burpsite.local',
-    password: 'FinalTest123!',
-    confirmPassword: 'FinalTest123!'
+    username: validationUser.username,
+    email: validationUser.email,
+    password: validationUser.password,
+    confirmPassword: validationUser.password
   });
   const register = await makeRequest('/api/auth/register', 'POST', registerData);
   const hasToken = register.statusCode === 201 && register.body.includes('token');

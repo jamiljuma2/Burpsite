@@ -96,8 +96,8 @@ docker-compose logs -f frontend
 ## 🏃 First Test Run
 
 ### 1. Create Account
-- Email: test@burpsite.local
-- Password: SecureTest123
+- Email: your unique email address
+- Password: your own strong password
 
 ### 2. Try Scanner
 - Go to Scanner tab

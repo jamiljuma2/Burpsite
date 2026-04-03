@@ -1,5 +1,12 @@
 const http = require('http');
 
+const uniqueSuffix = Date.now();
+const testUser = {
+  username: `prodtest_${uniqueSuffix}`,
+  email: `prodtest_${uniqueSuffix}@burpsite.local`,
+  password: `ProdTest!${uniqueSuffix}`,
+};
+
 const tests = [
   {
     name: 'Health Check',
@@ -12,10 +19,10 @@ const tests = [
     method: 'POST',
     path: '/api/auth/register',
     data: {
-      username: 'prodtest',
-      email: 'prodtest@burpsite.com',
-      password: 'ProdTest123',
-      confirmPassword: 'ProdTest123',
+      username: testUser.username,
+      email: testUser.email,
+      password: testUser.password,
+      confirmPassword: testUser.password,
     },
   },
 ];

@@ -11,11 +11,11 @@ This document provides sample test cases and scenarios for testing all features 
 
 ## Test Account
 
-For testing purposes, you can use:
-- **Email**: test@example.com
-- **Password**: TestPassword123
+Create your own test account during each test run.
 
-Or create your own account.
+Recommended format:
+- **Email**: yourname+timestamp@example.com
+- **Password**: Use a unique strong password
 
 ## 🧪 Test Cases
 
@@ -27,10 +27,10 @@ Steps:
 1. Navigate to http://localhost:3000
 2. Click "Register here"
 3. Enter:
-   - Username: testuser123
-   - Email: testuser@example.com
-   - Password: TestPass123
-   - Confirm Password: TestPass123
+  - Username: your unique username
+  - Email: your unique email
+  - Password: your strong password
+  - Confirm Password: same password
 4. Click "Register"
 
 Expected: User logged in, redirected to dashboard
@@ -40,8 +40,8 @@ Expected: User logged in, redirected to dashboard
 ```
 Steps:
 1. Click "Logout" if logged in
-2. Enter email: testuser@example.com
-3. Enter password: TestPass123
+2. Enter the email used during registration
+3. Enter the password used during registration
 4. Click "Login"
 
 Expected: User logged in, dashboard displayed
