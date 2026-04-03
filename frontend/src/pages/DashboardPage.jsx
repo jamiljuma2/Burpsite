@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../utils/api';
 import useAuthStore from '../context/authStore';
 import { BarChart3, Shield } from 'lucide-react';
+import '../styles/dashboardPages.css';
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -75,8 +76,11 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 p-6">
-      <div className="max-w-7xl mx-auto">
+    <div 
+      className="dashboard-container"
+      style={{ '--dashboard-bg-image': "url('/dashboard-bg.jpg')" }}
+    >
+      <div className="dashboard-content">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-2 flex items-center gap-3">
@@ -89,7 +93,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {cards.map((card, idx) => (
             <div
               key={idx}
@@ -103,8 +107,8 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Links */}
-        <div className="bg-slate-800 rounded-lg p-6 mb-6">
-          <h2 className="text-2xl font-bold mb-4">Quick Start</h2>
+        <div className="dashboard-card mb-6">
+          <h2 className="dashboard-section-title">Quick Start</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <QuickLinkCard
               title="Start a Security Scan"
@@ -140,8 +144,8 @@ export default function DashboardPage() {
         </div>
 
         {/* Features */}
-        <div className="bg-slate-800 rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+        <div className="dashboard-card">
+          <h2 className="dashboard-section-title flex items-center gap-2">
             <BarChart3 className="text-red-400" />
             Features
           </h2>
@@ -159,9 +163,9 @@ export default function DashboardPage() {
         </div>
 
         {/* Security Notice */}
-        <div className="mt-6 bg-yellow-900 border border-yellow-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-yellow-200 mb-2">⚠️ Legal Disclaimer</h3>
-          <p className="text-yellow-100 text-sm">
+        <div className="security-notice">
+          <h3>⚠️ Legal Disclaimer</h3>
+          <p>
             This tool is designed for authorized security testing only. Unauthorized access to
             computer systems is illegal. Always obtain written permission before testing any
             systems you do not own or have explicit authorization to test.
@@ -176,9 +180,7 @@ function QuickLinkCard({ title, description, onClick, disabled = false }) {
   return (
     <div
       onClick={!disabled ? onClick : undefined}
-      className={`bg-slate-700 rounded-lg p-4 transition ${
-        !disabled ? 'cursor-pointer hover:bg-slate-600' : 'opacity-50'
-      }`}
+      className={`quick-link-card ${disabled ? 'disabled' : ''}`}
     >
       <h3 className="font-bold text-white mb-1">{title}</h3>
       <p className="text-sm text-slate-400">{description}</p>
@@ -188,10 +190,8 @@ function QuickLinkCard({ title, description, onClick, disabled = false }) {
 
 function FeatureItem({ title, description }) {
   return (
-    <div className="flex gap-3">
-      <div className="flex-shrink-0 w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mt-1">
-        <span className="text-white font-bold">✓</span>
-      </div>
+    <div className="feature-item">
+      <div className="feature-icon">✓</div>
       <div>
         <h3 className="font-bold text-white">{title}</h3>
         <p className="text-sm text-slate-400">{description}</p>
