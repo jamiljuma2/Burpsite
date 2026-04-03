@@ -13,6 +13,7 @@ export default function DashboardPage() {
     totalTargets: 0,
     recentVulnerabilities: 0,
   });
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

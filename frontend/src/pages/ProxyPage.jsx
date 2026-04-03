@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import apiClient from '../utils/api';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Activity, Trash2, RefreshCw } from 'lucide-react';
@@ -10,11 +10,7 @@ export default function ProxyPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetchRequests();
-  }, []);
-
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
     setLoading(true);
     try {
       const response = await apiClient.get('/requests');
@@ -24,7 +20,11 @@ export default function ProxyPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [setRequests]);
+
+  useEffect(() => {
+    fetchRequests();
+  }, [fetchRequests]);
 
   const handleDeleteRequest = async (id) => {
     try {

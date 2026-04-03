@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../utils/api';
 import { Alert, LoadingSpinner } from '../components/Common';
-import { Globe, Trash2, RefreshCw } from 'lucide-react';
+import { Globe, Trash2 } from 'lucide-react';
 
 export default function TargetsPage() {
   const [targets, setTargets] = useState([]);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import apiClient from '../utils/api';
 import { Alert, LoadingSpinner } from '../components/Common';
 import { Target } from 'lucide-react';
@@ -11,6 +11,7 @@ export default function IntruderPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [results, setResults] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [currentAttackId, setCurrentAttackId] = useState(null);
 
   const payloadTypes = [
