@@ -4,7 +4,6 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -13,6 +12,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

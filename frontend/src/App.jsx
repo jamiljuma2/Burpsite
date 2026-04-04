@@ -73,7 +73,7 @@ export default function App() {
         <Header onMenuToggle={() => setIsSidebarOpen((prev) => !prev)} />
         <div className="flex flex-1 min-h-0">
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-          <main className="flex-1 min-w-0 overflow-auto overscroll-contain">
+          <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden">
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/dashboard" element={<DashboardPage />} />
