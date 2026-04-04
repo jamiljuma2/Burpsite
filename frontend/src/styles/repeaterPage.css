@@ -1,5 +1,7 @@
 .repeater-page-container {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1a1f35 100%);
   background-attachment: fixed;
 }
@@ -15,7 +17,8 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  filter: brightness(0.55) contrast(1.25) opacity(0.55);
+  filter: brightness(0.85) contrast(1.15) saturate(1.1);
+  opacity: 0.8;
   pointer-events: none;
   z-index: 0;
 }
