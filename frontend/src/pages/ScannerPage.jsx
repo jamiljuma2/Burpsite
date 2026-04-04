@@ -97,7 +97,7 @@ export default function ScannerPage() {
   return (
     <div
       className="scanner-page-container min-h-screen"
-      style={{ '--scanner-bg-image': `url(${process.env.PUBLIC_URL}/burp6.jpeg)` }}
+      style={{ '--scanner-bg-image': `url(${process.env.PUBLIC_URL}/burp2.jpeg)` }}
     >
       <div className="scanner-page-content h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
         <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
