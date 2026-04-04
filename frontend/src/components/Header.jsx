@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { LogOut, Menu, Shield } from 'lucide-react';
 import useAuthStore from '../context/authStore';
 
-export default function Header({ onMenuToggle }) {
+function Header({ onMenuToggle }) {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
 
@@ -54,3 +54,5 @@ export default function Header({ onMenuToggle }) {
     </header>
   );
 }
+
+export default React.memo(Header);

@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import useAuthStore from './context/authStore';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import { LoadingSpinner } from './components/Common';
 import apiClient from './utils/api';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
-import ProxyPage from './pages/ProxyPage';
-import RepeaterPage from './pages/RepeaterPage';
-import ScannerPage from './pages/ScannerPage';
-import IntruderPage from './pages/IntruderPage';
-import TargetsPage from './pages/TargetsPage';
-import AdminPage from './pages/AdminPage';
-import DocumentationPage from './pages/DocumentationPage';
 import './index.css';
+
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const ProxyPage = lazy(() => import('./pages/ProxyPage'));
+const RepeaterPage = lazy(() => import('./pages/RepeaterPage'));
+const ScannerPage = lazy(() => import('./pages/ScannerPage'));
+const IntruderPage = lazy(() => import('./pages/IntruderPage'));
+const TargetsPage = lazy(() => import('./pages/TargetsPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
+const DocumentationPage = lazy(() => import('./pages/DocumentationPage'));
+
+function PageLoader() {
+  return (
+    <div className="h-full min-h-[240px] flex items-center justify-center p-4">
+      <LoadingSpinner />
+    </div>
+  );
+}
 
 function AdminRoute({ children }) {
   const { user, isAuthenticated } = useAuthStore();
@@ -46,11 +56,13 @@ export default function App() {
   if (!isAuthenticated) {
     return (
       <Router>
-        <Routes>
-          <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
-          <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
-          <Route path="*" element={<Navigate to="/login" />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </Routes>
+        </Suspense>
       </Router>
     );
   }
@@ -61,18 +73,20 @@ export default function App() {
         <Header onMenuToggle={() => setIsSidebarOpen((prev) => !prev)} />
         <div className="flex flex-1 min-h-0">
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-          <main className="flex-1 min-w-0 overflow-auto">
-            <Routes>
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/proxy" element={<ProxyPage />} />
-              <Route path="/repeater" element={<RepeaterPage />} />
-              <Route path="/scanner" element={<ScannerPage />} />
-              <Route path="/intruder" element={<IntruderPage />} />
-              <Route path="/targets" element={<TargetsPage />} />
-              <Route path="/documentation" element={<DocumentationPage />} />
-              <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
-              <Route path="*" element={<Navigate to="/dashboard" />} />
-            </Routes>
+          <main className="flex-1 min-w-0 overflow-auto overscroll-contain">
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/proxy" element={<ProxyPage />} />
+                <Route path="/repeater" element={<RepeaterPage />} />
+                <Route path="/scanner" element={<ScannerPage />} />
+                <Route path="/intruder" element={<IntruderPage />} />
+                <Route path="/targets" element={<TargetsPage />} />
+                <Route path="/documentation" element={<DocumentationPage />} />
+                <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
+                <Route path="*" element={<Navigate to="/dashboard" />} />
+              </Routes>
+            </Suspense>
           </main>
         </div>
       </div>

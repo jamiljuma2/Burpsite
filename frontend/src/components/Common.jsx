@@ -28,7 +28,7 @@ export function Alert({ type = 'info', message, onClose }) {
   );
 }
 
-export function Tabs({ tabs, activeTab, setActiveTab }) {
+export const Tabs = React.memo(function Tabs({ tabs, activeTab, setActiveTab }) {
   return (
     <div className="border-b border-slate-700">
       <div className="flex gap-2 sm:gap-4 overflow-x-auto">
@@ -48,7 +48,7 @@ export function Tabs({ tabs, activeTab, setActiveTab }) {
       </div>
     </div>
   );
-}
+});
 
 export function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;

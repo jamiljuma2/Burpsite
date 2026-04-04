@@ -17,7 +17,7 @@ const ADMIN_NAV_ITEMS = [
   { label: 'Admin Dashboard', path: '/admin', icon: Crown },
 ];
 
-export default function Sidebar({ isOpen, onClose }) {
+function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
   const { user } = useAuthStore();
   const isAdmin = user?.role === 'admin';
@@ -94,3 +94,5 @@ export default function Sidebar({ isOpen, onClose }) {
     </>
   );
 }
+
+export default React.memo(Sidebar);
