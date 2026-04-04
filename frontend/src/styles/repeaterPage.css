@@ -1,0 +1,26 @@
+.repeater-page-container {
+  position: relative;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1a1f35 100%);
+  background-attachment: fixed;
+}
+
+.repeater-page-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--repeater-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: brightness(0.55) contrast(1.25) opacity(0.55);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.repeater-page-content {
+  position: relative;
+  z-index: 1;
+}
