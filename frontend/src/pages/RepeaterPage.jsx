@@ -4,7 +4,6 @@ import { defaultCache } from '../utils/requestCache';
 import { Alert, LoadingSpinner, Tabs } from '../components/Common';
 import { Activity } from 'lucide-react';
 import RequestDetailsPanel from '../components/RequestDetailsPanel';
-import '../styles/repeaterPage.css';
 
 export default function RepeaterPage() {
   const [requests, setRequests] = useState([]);
@@ -95,11 +94,7 @@ export default function RepeaterPage() {
   };
 
   return (
-    <div
-      className="repeater-page-container min-h-screen"
-      style={{ '--repeater-bg-image': `url(${process.env.PUBLIC_URL}/burp8.jpeg)` }}
-    >
-      <div className="repeater-page-content h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
+    <div className="h-full min-h-0 flex flex-col gap-4 p-3 sm:p-4">
       <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
         <Activity className="text-red-400" size={32} />
         Request Repeater
@@ -214,7 +209,6 @@ export default function RepeaterPage() {
             </div>
           )}
         </div>
-      </div>
       </div>
     </div>
   );
